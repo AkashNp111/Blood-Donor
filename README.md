@@ -60,7 +60,32 @@ SQL> DESC USERS_FEEDBACK;
 
 
 
+# Test Data
 
+Insert Into Users(Login_Id,Password,Email_Id,First_Name,Last_Name,Mobile_No,Blood_Group) Values('Srinu.Np','test123','SrinuNp111@gmail.com','Srinu','Np','9177039955','B+');
+
+Insert Into Users(Login_Id,Password,Email_Id,First_Name,Last_Name,Mobile_No,Blood_Group) Values('Venu.Np','test111','VenuNp111@gmail.com','Venu','Np','9700019360','O+');
+
+Insert Into Users(Login_Id,Password,Email_Id,First_Name,Last_Name,Mobile_No,Blood_Group) Values('Akash.Np','test113','AkashNp111@gmail.com','Akash','Np','9666381576','B+');
+
+Insert Into USERS_ADDRESS(Login_Id,City,State,Location) Values('Srinu.Np','Hyd','Telangana','Nallagandla');
+
+Insert Into USERS_ADDRESS(Login_Id,City,State,Location) Values('Venu.Np','Hyd','Telangana','KPHP');
+
+Insert Into USERS_ADDRESS(Login_Id,City,State,Location) Values('Akash.Np','Hyd','Telangana','LingamPalli');
+
+Insert Into Role(Role_Id,Role_Name) Values(1,'Admin');
+Insert Into Role(Role_Id,Role_Name) Values(2,'Donor');
+
+Insert Into USERS_Role(Login_Id,Role_Id) values('Srinu.Np',1);
+Insert Into USERS_Role(Login_Id,Role_Id) values('Srinu.Np',2);
+Insert Into USERS_Role(Login_Id,Role_Id) values('Venu.Np',2);
+
+Insert Into USERS_FeedBack(Feedback_Id,Feedback_Message,Posted_By,Donor_ID) Values(1,'Responded On Time.Thanks Venu','Srinu.Np','Venu.Np');
+Insert Into USERS_FeedBack(Feedback_Id,Feedback_Message,Posted_By,Donor_ID) Values(2,'Did not lift the call.','Srinu.Np','Akash.Np');
+Insert Into USERS_FeedBack(Feedback_Id,Feedback_Message,Posted_By,Donor_ID) Values(3,'Not Reachable','Venu.Np','Akash.Np');
+
+commit;
 
 
 

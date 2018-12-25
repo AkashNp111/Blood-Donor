@@ -1,24 +1,17 @@
 package com.blood.donors.dao;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import java.io.Serializable;
 
-import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
 import com.blood.donors.dao.bean.Role;
 
 @Repository
-public class RoleDAO {
+public class RoleDAO  extends BaseDAO<Role, Serializable>{
 	
-	@PersistenceContext
-	private EntityManager entityManager;	
+	public RoleDAO()
+	{
+		super(Role.class);
+	}
 	
-		public Role test()
-		{
-			Session session = entityManager.unwrap(Session.class);
-			return session.get(Role.class, 1);
-					
-		}
-
 }
