@@ -28,12 +28,12 @@ public class Feedback {
 	private String feedbackMessage = null;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "POSTED_BY", nullable = false)
+	@JoinColumn(name = "POSTED_BY")
 	@JsonBackReference
 	private User postedUser = null;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "DONOR_ID", nullable = false)
+	@JoinColumn(name = "DONOR_ID")
 	@JsonManagedReference
 	private User  donor = null;
 	
