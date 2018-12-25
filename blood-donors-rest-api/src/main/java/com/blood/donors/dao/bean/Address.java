@@ -32,6 +32,18 @@ public class Address {
 	public Address() {
 
 	}
+	
+	
+
+	public Address(String loginId, String city, String state, String loaction) {
+		super();
+		this.loginId = loginId;
+		this.city = city;
+		this.state = state;
+		this.loaction = loaction;
+	}
+
+
 
 	public String getLoginId() {
 		return loginId;

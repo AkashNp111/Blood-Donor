@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.blood.donors.controller.bean.UserControllerBean;
+import com.blood.donors.dao.bean.Address;
 import com.blood.donors.dao.bean.User;
 import com.blood.donors.service.UserService;
 
@@ -43,14 +45,40 @@ public class UsersController {
 	
 
 	@PostMapping(path="/users",consumes="application/json")
-	public ResponseEntity<User> saveUser(@RequestBody User user)
+	public ResponseEntity<User> saveUser(@RequestBody UserControllerBean controllerBean)
 	{
+		Address address = new Address(controllerBean.getLoginId(),
+				controllerBean.getAddress().getCity(),
+				controllerBean.getAddress().getState(), 
+				controllerBean.getAddress().getLoaction());
+		User user = new User(
+				controllerBean.getLoginId(),
+				controllerBean.getPassword(), 
+				controllerBean.getFirstName(), 
+				controllerBean.getLastName(), 
+				controllerBean.getEmailId(), 
+				controllerBean.getBloodGroup(), 
+				controllerBean.getMobileNo(), 
+				address);
 		return new ResponseEntity<User>(userService.saveOrUpdate(user),HttpStatus.OK);
 	}
 	
-	@PutMapping(path="/users")	
-	public ResponseEntity<User> updateUser(@RequestBody User user)
+	@PutMapping(path="/users",consumes="application/json")
+	public ResponseEntity<User> updateUser(@RequestBody UserControllerBean controllerBean)
 	{
+		Address address = new Address(controllerBean.getLoginId(),
+				controllerBean.getAddress().getCity(),
+				controllerBean.getAddress().getState(), 
+				controllerBean.getAddress().getLoaction());
+		User user = new User(
+				controllerBean.getLoginId(),
+				controllerBean.getPassword(), 
+				controllerBean.getFirstName(), 
+				controllerBean.getLastName(), 
+				controllerBean.getEmailId(), 
+				controllerBean.getBloodGroup(), 
+				controllerBean.getMobileNo(), 
+				address);
 		return new ResponseEntity<User>(userService.saveOrUpdate(user),HttpStatus.OK);
 	}
 }

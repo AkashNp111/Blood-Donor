@@ -73,6 +73,25 @@ public class User {
 	public User() {
 
 	}
+	
+	
+
+	public User(String loginId, String password, 
+			String firstName, String lastName, 
+			String emailId, String bloodGroup,
+			String mobileNo, Address address) {
+		super();
+		this.loginId = loginId;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.emailId = emailId;
+		this.bloodGroup = bloodGroup;
+		this.mobileNo = mobileNo;
+		this.address = address;
+	}
+
+
 
 	public String getLoginId() {
 		return loginId;
