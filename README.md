@@ -8,15 +8,15 @@ Drop Table Role;
 Drop Table Users_Address;
 Drop Table Users;
 
-Create Table Users(Login_Id Varchar2(15) Primary Key, Password Varchar2(15),Email_Id Varchar2(30) Unique, First_Name Varchar2(8),Last_Name Varchar2(8),Mobile_No Number(10),Blood_Group Varchar2(8));
+Create Table Users(Login_Id Varchar2(15) , Password Varchar2(15),Email_Id Varchar2(30) Not Null , First_Name Varchar2(8),Last_Name Varchar2(8),Mobile_No Varchar2(20) Not Null,Blood_Group Varchar2(8),Constraint Login_Id_Primary Primary Key(Login_Id) );
 
-Create Table Users_Address(Login_Id Varchar2(15) Primary Key, City Varchar2(15),State Varchar2(15),Location Varchar2(20));
+Create Table Users_Address(Login_Id Varchar2(15) , City Varchar2(15),State Varchar2(15),Location Varchar2(20),Constraint Address_Login_Id_Primary Primary Key(Login_Id));
 
-Create Table Role(Role_Id number(10) Primary Key,Role_Name Varchar2(15));
+Create Table Role(Role_Id number(10),Role_Name Varchar2(15),Constraint Role_Id_Primary Primary Key(Role_Id));
 
 Create Table Users_Role(Login_Id Varchar2(15) references Users(Login_Id),Role_Id Number(10) references Role(Role_Id));
 
-Create Table Users_Feedback(Feedback_Id Number(10) Primary Key, Feedback_Message Varchar2(150),Posted_By varchar2(15) references Users(Login_Id),Donor_Id references Users(Login_Id));
+Create Table Users_Feedback(Feedback_Id Number(10), Feedback_Message Varchar2(150),Posted_By varchar2(15) references Users(Login_Id),Donor_Id references Users(Login_Id),Constraint Feedback_ID_Primary Primary Key(Feedback_Id));
 
 
 SQL> DESC Users;
