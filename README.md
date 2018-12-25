@@ -10,7 +10,7 @@ Drop Table Users;
 
 Create Table Users(Login_Id Varchar2(15) , Password Varchar2(15),Email_Id Varchar2(30) Not Null , First_Name Varchar2(8),Last_Name Varchar2(8),Mobile_No Varchar2(20) Not Null,Blood_Group Varchar2(8),Constraint Login_Id_Primary Primary Key(Login_Id) );
 
-Create Table Users_Address(Login_Id Varchar2(15) , City Varchar2(15),State Varchar2(15),Location Varchar2(20),Constraint Address_Login_Id_Primary Primary Key(Login_Id));
+Create Table Users_Address(Login_Id Varchar2(15) references Users(Login_Id), City Varchar2(15),State Varchar2(15),Location Varchar2(20),Constraint Address_Login_Id_Primary Primary Key(Login_Id));
 
 Create Table Role(Role_Id number(10),Role_Name Varchar2(15),Constraint Role_Id_Primary Primary Key(Role_Id));
 

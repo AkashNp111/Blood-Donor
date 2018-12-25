@@ -42,7 +42,7 @@ public class UsersController {
 	
 	
 
-	@PostMapping(path="/users")
+	@PostMapping(path="/users",consumes="application/json")
 	public ResponseEntity<User> saveUser(@RequestBody User user)
 	{
 		return new ResponseEntity<User>(userService.saveOrUpdate(user),HttpStatus.OK);

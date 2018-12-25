@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.blood.donors.dao.UserDAO;
 import com.blood.donors.dao.bean.User;
@@ -14,6 +15,7 @@ public class UserService {
 	@Autowired
 	private UserDAO userDAO = null;
 
+	@Transactional
 	public User saveOrUpdate(User entity) {
 
 		return userDAO.saveOrUpdate(entity);
@@ -24,6 +26,7 @@ public class UserService {
 		return userDAO.getById(loginId);	
 	}
 
+	@Transactional
 	public User deleteById(String id) {
 
 		return userDAO.deleteById(id);

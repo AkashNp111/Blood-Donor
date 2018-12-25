@@ -13,12 +13,14 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.GenericGenerator;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -26,8 +28,6 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 public class User {
 
 	@Id
-	@GenericGenerator(name = "asg", strategy = "assigned")
-	@GeneratedValue(generator = "asg")
 	@Column(name = "LOGIN_ID")
 	private String loginId = null;
 
@@ -49,21 +49,24 @@ public class User {
 	@Column(name = "MOBILE_NO")
 	private String mobileNo = null;
 
-	@JsonManagedReference
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@PrimaryKeyJoinColumn
 	private Address address = null;
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "USERS_ROLE", joinColumns = { @JoinColumn(name = "LOGIN_ID") }, inverseJoinColumns = {
 			@JoinColumn(name = "ROLE_ID") })
+	@JsonManagedReference
 	private Set<Role> roleSet = null;
 
-	@OneToMany(fetch = FetchType.EAGER,mappedBy="postedUser")
+	@OneToMany(fetch = FetchType.EAGER,mappedBy="postedUser",cascade=CascadeType.ALL)
 	@Fetch(FetchMode.SUBSELECT)
+	@JsonManagedReference
 	private Set<Feedback> postedFeedbacks = null;
 	
-	@OneToMany(fetch = FetchType.EAGER,mappedBy="donor")
+	@OneToMany(fetch = FetchType.LAZY,mappedBy="donor")
 	@Fetch(FetchMode.SUBSELECT)
+	@JsonBackReference
 	private Set<Feedback> donorsSet = null;
 	
 	

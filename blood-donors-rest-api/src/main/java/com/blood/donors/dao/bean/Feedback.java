@@ -11,6 +11,9 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name="USERS_FEEDBACK")
 public class Feedback {
@@ -24,12 +27,14 @@ public class Feedback {
 	@Column(name="FEEDBACK_Message")
 	private String feedbackMessage = null;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "POSTED_BY", nullable = false)
+	@JsonBackReference
 	private User postedUser = null;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "DONOR_ID", nullable = false)
+	@JsonManagedReference
 	private User  donor = null;
 	
 	public Feedback()
