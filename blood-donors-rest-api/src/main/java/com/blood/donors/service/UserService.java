@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.blood.donors.controller.bean.Login;
 import com.blood.donors.dao.UserDAO;
 import com.blood.donors.dao.bean.User;
 
@@ -36,5 +37,10 @@ public class UserService {
 
 		return userDAO.findAll();
 
+	}
+	
+	public User validateUserLogin(Login login)
+	{
+		return userDAO.validateUserLogin(login);
 	}
 }

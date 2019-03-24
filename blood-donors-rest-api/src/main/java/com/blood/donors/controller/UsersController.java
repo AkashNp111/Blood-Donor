@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.blood.donors.controller.bean.Login;
 import com.blood.donors.controller.bean.UserControllerBean;
 import com.blood.donors.dao.bean.Address;
 import com.blood.donors.dao.bean.User;
@@ -61,6 +62,12 @@ public class UsersController {
 				controllerBean.getMobileNo(), 
 				address);
 		return new ResponseEntity<User>(userService.saveOrUpdate(user),HttpStatus.OK);
+	}
+	
+	@PostMapping(path="/login",consumes="application/json")
+	public ResponseEntity<User> userLogin(@RequestBody Login login)
+	{
+		return new ResponseEntity<User>(userService.validateUserLogin(login),HttpStatus.OK);
 	}
 	
 	@PutMapping(path="/users",consumes="application/json")
