@@ -28,7 +28,7 @@ export class FeedbackService {
       pipe
       (
         tap(_ => 'Fetched all the Users'),
-        catchError(this.handleError<Feedback>('getUsers()',[]))
+        catchError(this.handleError<Feedback>('getUsers()'))
       );
   }
 
