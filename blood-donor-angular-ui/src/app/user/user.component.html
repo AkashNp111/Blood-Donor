@@ -1,24 +1,142 @@
-<!--
-<h2>My Heroes</h2>
-<div>
-  <label>Hero name:
-    <input #heroName />
-  </label>
-  // (click) passes input value to add() and then clears the input 
-  <button (click)="add(heroName.value); heroName.value=''">
-    add
-  </button>
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+<div class="container">
+    <br/>
+	<div class="row justify-content-center">
+            
+                        <div class="col-12 col-md-10 col-lg-8">
+                            <div class="card card-sm">
+                                <div class="card-body row no-gutters align-items-center">
+                                    <div class="col-auto">
+                                        <i class="fas fa-search h4 text-body"></i>
+                                    </div>
+                                    <!--end of col-->
+                                    <div class="col">
+                                        <input [(ngModel)] = "search.city" class="form-control form-control-lg form-control-borderless" type="search" placeholder="Search donor by city">
+                                    </div>
+                                    <!--end of col-->
+                                    <div class="col-auto">
+                                        <button class="btn btn-lg btn-success" (click) ="searchByCity(search)" type="button">Search</button>
+                                    </div>
+                                    <!--end of col-->
+                                </div>
+                               
+                            </div>                            
+                        </div>
+                        <div>
+                                <div ngbDropdown class="d-inline-block">
+                                        <img ngbDropdownToggle id="dropdownBasic1" class="user-icon" src="assets/images/MyAccountIcon.png" alt="Italian Trulli">
+                                        <!-- <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Toggle dropdown</button> -->
+                                        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                          <button class=" btn-outline-primary" (click)="editUser(userInfo)">Edit Profile</button>
+                                          <button class=" btn-outline-primary" (click)="logout()">Logout</button>
+                                          
+                                        </div>
+                                      </div>
+                                    <b> Welcome {{userInfo.firstName}} {{userInfo.lastName}}  </b> 
+                        </div>
+                        
+                        
+                    </div>
+                   
 </div>
--->
-<h2> Welcome {{userInfo.firstName}} <br>
+<div class="row justify-content-center" *ngIf="users != null && users.length > 0">
+  <h2 style="margin: auto"> Donor Details</h2>
+    <table class="table table-striped">
+    <thead>
+    <tr>
+      <th class="hidden"></th>
+      <th>FirstName</th>
+      <th>LastName</th>
+      <th>BGroup</th>
+      <th>City</th>
+      <th>Location</th>
+      <th>Phone No</th>
+      <th>Email</th>
+      <th>View Feedback</th>
+      <div *ngIf="userInfo.loginId == 'Akash.Np'">
+          <th>Delete</th>
+      </div>
+      <!-- <th>Action</th> -->
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of users; let i = index">
+      <td class="hidden"></td>
+      <td>{{user.firstName}}</td>
+      <td>{{user.lastName}}</td>
+      <td>{{user.bloodGroup}}</td>
+      <td>{{user.address.city}}</td>
+      <td>{{user.address.location}}</td>
+      <td>{{user.mobileNo}}</td>
+      <td>{{user.emailId}}</td>
+      
+      <td>  
+          <p>
+                <button type="button" class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed"
+                        [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+                  Toggle
+                </button>
+              </p>
+              <div id="collapseExample" [ngbCollapse]="isCollapsed">
+                <div class="card">
 
-{{ userInfo.lastName}}<br>
-{{ userInfo.mobileNo}} <br>
-{{ userInfo.address.city}}<br>
-{{ userInfo.address.state}}<br>
-{{ userInfo.address.location}}<br>
-{{ userInfo.emailId}}<br>
-{{ userInfo.bloodGroup}}<br>
+                  <div class="card-body" *ngFor="let fb of user.donorsSet">
+                    <li>
+                        {{ fb.feedbackMessage}} PostedBy {{fb.postedUser.firstName }}
+                    </li>
+                  </div>
 
+                  <div class="card-body" *ngIf="user == null || user == undefined 
+                  || user.donorsSet.length == 0">
+                    <li>
+                        No feedbacks found for the Donor {{user.firstName}}
+                    </li>
+                  </div>
 
-</h2>
+                </div>
+              </div>
+        </td>
+        <div *ngIf="userInfo.loginId == 'Akash.Np'">
+        <td> <button type="button" class="btn btn-outline-danger" (click)="delete(user.loginId)">Delete</button></td>
+        </div>
+     <!-- <td> 
+        <ng-template #content let-modal>
+            <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title">Add Feedback</h4>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+   
+                <div class="form-group">
+                  <label for="Feedback">Feedback Message</label>
+                  <div class="input-group">
+                    <input id="feedbackMessage" class="form-control" type="text" [(ngModel)] = "feedbackMessage">
+                  </div>
+                </div>
+              
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-dark" (click)="modal.close(userInfo , user , feedbackMessage);feedbackMessage=''">Save</button>
+            </div>
+          </ng-template>
+          
+          <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Add</button>
+          
+           <hr>
+          
+          <pre>{{closeResult}}</pre>  
+
+     </td> -->
+    </tr>
+    </tbody>
+  </table>
+</div>
+

@@ -59,14 +59,14 @@ public class User {
 	@JsonManagedReference
 	private Set<Role> roleSet = null;
 
-	@OneToMany(fetch = FetchType.EAGER,mappedBy="postedUser",cascade=CascadeType.ALL)
-	@Fetch(FetchMode.SUBSELECT)
-	@JsonManagedReference
-	private Set<Feedback> postedFeedbacks = null;
-	
-	@OneToMany(fetch = FetchType.LAZY,mappedBy="donor")
+	@OneToMany(fetch = FetchType.LAZY,mappedBy="postedUser",cascade=CascadeType.ALL)
 	@Fetch(FetchMode.SUBSELECT)
 	@JsonBackReference
+	private Set<Feedback> postedFeedbacks = null;
+	
+	@OneToMany(fetch = FetchType.EAGER,mappedBy="donor")
+	@Fetch(FetchMode.SUBSELECT)
+	@JsonManagedReference
 	private Set<Feedback> donorsSet = null;
 	
 	

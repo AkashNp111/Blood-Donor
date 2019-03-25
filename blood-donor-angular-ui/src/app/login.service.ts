@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, map, tap, delay } from 'rxjs/operators';
 import { Login } from './login/user.login';
 import { UserService } from './user.service';
 import { User } from './user/user.info';
@@ -25,6 +25,7 @@ export class LoginService {
     return this.http.post<User>(this.loginUrl,login,httpOptions).
     pipe
     (
+      delay(1000),
       tap(_ => ' User Login Successful !!!'),
       catchError(this.userService.handleError<User>('doLogin()'))
     );

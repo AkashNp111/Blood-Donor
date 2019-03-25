@@ -27,14 +27,14 @@ public class Feedback {
 	@Column(name="FEEDBACK_Message")
 	private String feedbackMessage = null;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "POSTED_BY")
-	@JsonBackReference
+	@JsonManagedReference
 	private User postedUser = null;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "DONOR_ID")
-	@JsonManagedReference
+	@JsonBackReference
 	private User  donor = null;
 	
 	public Feedback()

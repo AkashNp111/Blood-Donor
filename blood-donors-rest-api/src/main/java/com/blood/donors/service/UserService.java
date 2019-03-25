@@ -43,4 +43,9 @@ public class UserService {
 	{
 		return userDAO.validateUserLogin(login);
 	}
+	
+	public List<User> searchByCity(String city)
+	{
+		return userDAO.searchByCity(city);
+	}
 }

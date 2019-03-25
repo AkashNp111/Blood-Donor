@@ -81,4 +81,13 @@ public class UserDAO  {
 		List<User> usersList =  query.getResultList();
 		return usersList.size() > 0 ? usersList.get(0): null ;
 	}
+	
+	public List<User> searchByCity(String city)
+	{
+		String hql = " Select usr From User usr Where upper(usr.address.city) like :city  ";
+		Session session = entityManager.unwrap(Session.class);
+		TypedQuery<User>  query = session.createQuery(hql, User.class);
+		query.setParameter("city", "%"+city.toUpperCase().trim()+"%");
+		return query.getResultList();
+	}
 }

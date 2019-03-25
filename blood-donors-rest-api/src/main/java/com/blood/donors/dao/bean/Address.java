@@ -26,7 +26,7 @@ public class Address {
 	private String state = null;
 
 	@Column(name = "LOCATION")
-	private String loaction = null;
+	private String location = null;
 
 
 	public Address() {
@@ -40,7 +40,7 @@ public class Address {
 		this.loginId = loginId;
 		this.city = city;
 		this.state = state;
-		this.loaction = loaction;
+		this.location = loaction;
 	}
 
 
@@ -69,13 +69,19 @@ public class Address {
 		this.state = state;
 	}
 
-	public String getLoaction() {
-		return loaction;
+
+
+	public String getLocation() {
+		return location;
 	}
 
-	public void setLoaction(String loaction) {
-		this.loaction = loaction;
+
+
+	public void setLocation(String location) {
+		this.location = location;
 	}
+
+	
 
 	
 }

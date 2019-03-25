@@ -31,14 +31,16 @@ export class LoginComponent implements OnInit {
 
   
     this.loginService.doLogin(loginData).subscribe(user => this.user = user);
-     if(this.user == null)
-     {
-      this.errorMsg = "Invalid UserId or Password";
-      }else
+    console.log("********"+this.user);
+    
+     if(this.user != null)
      {
       this.errorMsg = "";
       this.dataService.saveUser(this.user);
       this.router.navigate(["/users"]);
+      }else
+     {
+      this.errorMsg = "Invalid UserId or Password";
      } 
 
   }

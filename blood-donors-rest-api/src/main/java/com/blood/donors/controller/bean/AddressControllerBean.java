@@ -8,7 +8,7 @@ public class AddressControllerBean {
 
 	private String state = null;
 
-	private String loaction = null;
+	private String location = null;
 
 	public AddressControllerBean() {
 
@@ -38,12 +38,13 @@ public class AddressControllerBean {
 		this.state = state;
 	}
 
-	public String getLoaction() {
-		return loaction;
+	public String getLocation() {
+		return location;
 	}
 
-	public void setLoaction(String loaction) {
-		this.loaction = loaction;
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
+	
 }

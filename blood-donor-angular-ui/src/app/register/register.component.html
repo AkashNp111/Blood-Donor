@@ -1,0 +1,37 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+     <h2 > <font color="red"> Register Here </font></h2>
+    </div>
+
+    <!-- Login Form -->
+
+      <input type="text" id="loginid" [(ngModel)] = "user.loginId" class="fadeIn second"  placeholder="login">
+      <input type="password" id="password"  [(ngModel)] = "user.password" class="fadeIn third"  placeholder="password">
+      <input type="text" id="firstName" [(ngModel)] = "user.firstName" class="fadeIn second"  placeholder="First Name">
+      <input type="text" id="lastName" [(ngModel)] = "user.lastName" class="fadeIn second"  placeholder="Last Name">
+      <input type="text" id="emailId"  [(ngModel)] = "user.emailId"  class="fadeIn third"  placeholder="email">
+      <input type="text" id="bloodGroup"  [(ngModel)] = "user.bloodGroup" class="fadeIn third"  placeholder="Blood Group">
+      <input type="text" id="mobileNo"  [(ngModel)] = "user.mobileNo" class="fadeIn third"  placeholder="Mobile No">
+      <input type="text" id="city"  [(ngModel)] = "user.address.city" class="fadeIn third"  placeholder="City">
+      <input type="text" id="state"  [(ngModel)] = "user.address.state" class="fadeIn third"  placeholder="State">
+      <input type="text" id="location"  [(ngModel)] = "user.address.location" class="fadeIn third"  placeholder="Location">
+
+      <input type="button" class="fadeIn fourth" (click)="register(user)" value="Register">
+  
+
+    <!-- login -->
+    <div id="formFooter">
+      <a class="underlineHover" href="/login">Already Registered ? Login</a>
+    </div>
+
+  </div>
+</div>
